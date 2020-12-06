@@ -66,7 +66,9 @@ class App extends Component {
         this.setState({ [key]: value });
     }
 
-    addItem() {
+    addItem(e) {
+
+        e.preventDefault()
         // create a new item with unique id
         const newItem = {
             id: 1 + Math.random(),
@@ -77,8 +79,13 @@ class App extends Component {
         // copy current list of items
         const list = [...this.state.list];
 
+        console.log(newItem.value)
+
         // add the new item to the list
+        if(newItem.value !== ''){
         list.push(newItem);
+        }
+
 
         // update state with new list, reset the new item input
         this.setState({
@@ -95,18 +102,21 @@ class App extends Component {
 
         this.setState({ list: updatedList });
     }
+    
 
 
 
     render = () =>
 
-        <div className="container p-1">
+    
+    <div className="container p-1">
             <div className="alert alert-primary text-center text-white bg-secondary m-1">
                 <h1>ToDo </h1>
                 <h3>Add a Item ...</h3>
             </div>
+    {console.log(this.state.newItem)}
 
-            <div className='center'>
+            <form className='center' onSubmit={(e) => this.addItem(e)}>
                 <TextField
                     className="input-group-text"
                     type='text'
@@ -120,9 +130,9 @@ class App extends Component {
                     color="inherit"
                     onClick={() => this.addItem()}>
                     Add
-       </Button>
+                </Button>
 
-            </div>
+            </form>
 
             <List>
                 {this.state.list.map((item) => {

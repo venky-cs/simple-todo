@@ -4,8 +4,13 @@
   box-sizing: border-box;
 }
 
+body {
+  width: 80%;
+  height: 100vh;
+  margin:0 auto;
+}
+
 .todo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  place-items: center;
 }
